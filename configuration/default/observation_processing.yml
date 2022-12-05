@@ -4,8 +4,8 @@
 
 lake_name_code: CCRE
 lake_name: Carvins Cove Reservoir
-lake_latitude: 29.67562   #Degrees North
-lake_longitude: -82.0085  #Degrees West
+lake_latitude: 37.3697   #Degrees North
+lake_longitude: -79.9580  #Degrees West
 
 #Time zone that GLM is run in
 #Currently needed to be GMT so that it interfaces with the NOAA forecast
@@ -27,9 +27,9 @@ downscaling_coeff: debiased.coefficients.2018_07_12_2019_07_11.RData
 #Depths used in the EnKF
 #This are the depths that are saved between days
 #Init depth of lake
-lake_depth_init: 6.1  #not a modeled state
+lake_depth_init: 22.8  #not a modeled state
 
-depths_bins_top: [0.00,0.1,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6]
+depths_bins_top: [0.1,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,15.0,21.0]
 
 realtime_met_station_location: data
 realtime_temp_location: data
