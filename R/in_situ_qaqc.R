@@ -8,47 +8,47 @@ in_situ_qaqc <- function(insitu_obs_fname,
                          site_id,
                          config){
 
-  print("QAQC BVR sensors")
+  print("QAQC CCR sensors")
 
   d <- temp_oxy_chla_qaqc(realtime_file = insitu_obs_fname[1],
                           qaqc_file = insitu_obs_fname[2],
                           offset_file = insitu_obs_fname[3],
                           maintenance_file = maintenance_file,
                           config = config)
-
-  if(exists("ctd_fname")){
-    if(!is.na(ctd_fname)){
-      print("QAQC CTD")
-      d_ctd <- extract_CTD(fname = file.path(config$file_path$data_directory,config$ctd_fname),
-                           input_file_tz = "EST",
-                           focal_depths = config$focal_depths,
-                           config = config)
-      d <- rbind(d,d_ctd)
-    }
-  }
-
-
-  if(exists("nutrients_fname")){
-    if(!is.na(nutrients_fname)){
-      print("QAQC Nutrients")
-      d_nutrients <- extract_nutrients(fname = file.path(config$file_path$data_directory,config$nutrients_fname),
-                                       input_file_tz = "EST",
-                                       focal_depths = config$focal_depths)
-      d <- rbind(d,d_nutrients)
-    }
-  }
-
-
-  if(exists("ch4_fname")){
-    if(!is.na(ch4_fname)){
-      print("QAQC CH4")
-      d_ch4 <- extract_ch4(fname = file.path(config$file_path$data_directory,config$ch4_fname),
-                           input_file_tz = "EST",
-                           focal_depths = config$focal_depths)
-      d <- rbind(d,d_ch4)
-    }
-  }
-  
+# 
+#   if(exists("ctd_fname")){
+#     if(!is.na(ctd_fname)){
+#       print("QAQC CTD")
+#       d_ctd <- extract_CTD(fname = file.path(config$file_path$data_directory,config$ctd_fname),
+#                            input_file_tz = "EST",
+#                            focal_depths = config$focal_depths,
+#                            config = config)
+#       d <- rbind(d,d_ctd)
+#     }
+#   }
+# 
+# 
+#   if(exists("nutrients_fname")){
+#     if(!is.na(nutrients_fname)){
+#       print("QAQC Nutrients")
+#       d_nutrients <- extract_nutrients(fname = file.path(config$file_path$data_directory,config$nutrients_fname),
+#                                        input_file_tz = "EST",
+#                                        focal_depths = config$focal_depths)
+#       d <- rbind(d,d_nutrients)
+#     }
+#   }
+# 
+# 
+#   if(exists("ch4_fname")){
+#     if(!is.na(ch4_fname)){
+#       print("QAQC CH4")
+#       d_ch4 <- extract_ch4(fname = file.path(config$file_path$data_directory,config$ch4_fname),
+#                            input_file_tz = "EST",
+#                            focal_depths = config$focal_depths)
+#       d <- rbind(d,d_ch4)
+#     }
+#   }
+#   
   cuts <- tibble::tibble(cuts = as.integer(factor(config$depths_bins_top)),
                          depth = config$depths_bins_top)
   
@@ -84,7 +84,7 @@ in_situ_qaqc <- function(insitu_obs_fname,
   }
   
 
-  d_clean$site_id <- "bvre"
+  d_clean$site_id <- "ccre"
   
   d_clean <- d_clean %>%
     rename(datetime = time,
