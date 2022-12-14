@@ -4,10 +4,10 @@ s3:
     bucket: drivers/noaa/gefs-v12
   inflow_drivers:
     endpoint: s3.flare-forecast.org
-    bucket: drivers/inflow/neon/parquet
+    bucket: drivers/inflow/ccre/parquet
   targets:
     endpoint: s3.flare-forecast.org
-    bucket: targets/neon
+    bucket: targets/ccre
   forecasts:
     endpoint: s3.flare-forecast.org
     bucket: forecasts
@@ -16,15 +16,15 @@ s3:
     bucket: forecasts/parquet
   warm_start:
     endpoint: s3.flare-forecast.org
-    bucket: restart/neon
+    bucket: restart/ccre
   scores:
     endpoint: s3.flare-forecast.org
     bucket: scores/parquet
 location:
    site_id: CCRE
    name: Carvins Cove Reservoir
-   latitude: 29.67562   #Degrees North
-   longitude: -82.0085  #Degrees West
+   latitude: 37.3697  #Degrees North
+   longitude: -79.9580  #Degrees West
 da_setup:
     da_method: enkf
     par_fit_method: perturb_const
@@ -42,21 +42,33 @@ model_settings:
                     2.00,2.25,2.50,2.75,
                     3.00,3.25,3.50,3.75,
                     4.00,4.25,4.50,4.75,
-                    5.00,5.25,5.50,5.75, 6.00]
+                    5.00,5.25,5.50,5.75,
+                    6.00,6.25,6.50,6.75,
+                    7.00,7.25,7.50,7.75,  
+                    8.00,8.25,8.50,8.75,
+                    9.00,9.25,9.50,9.75 
+                    10.00,10.25,10.50,10.75 
+                    11.00,11.25,11.50,11.75 
+                    12.00,12.25,12.50,12.75 
+                    13.00,13.25,13.50,13.75 
+                    14.00,14.25,14.50,14.75 
+                    15.00,15.25,15.50,15.75 
+                    16.00,16.25,16.50,16.75 
+                    17.00,17.25,17.50,17.75 
+                    18.00,18.25,18.50,18.75 
+                    19.00,19.25,19.50,19.75,
+                    20.00,20.25,20.50,20.75 
+                    21.00]
    par_config_file: parameter_calibration_config.csv
    obs_config_file: observations_config.csv
    states_config_file: states_config.csv
    depth_model_sd_config_file: depth_model_sd.csv
 default_init:
-   lake_depth: 6.1  #not a modeled state
-   temp: [20,20,20,20,
-          20,20,20,20,
-          20,20,20,20,
-          20,20]
-   temp_depths: [0.00,0.10,0.50,1.00,
-                 1.50,2.00,2.50,3.00,
-                 3.50,4.00,4.50,5.00,
-                 5.50,6.00]
+   lake_depth: 22.8  #not a modeled state
+   temp: [20,20,20,20,20,20,
+          20,20,20,20,20,20,20]
+   temp_depths: [0.1,1.0,2.0,3.0,4.0,5.0, 
+                 6.0,7.0,8.0,9.0,10.0,15.0,21.0]
    salinity: 0.0
    snow_thickness: 0.0
    white_ice_thickness: 0.0
