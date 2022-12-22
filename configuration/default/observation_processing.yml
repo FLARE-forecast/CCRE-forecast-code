@@ -17,7 +17,7 @@ local_tzone: "UTC"
 noaa_location: CCRE
 
 met_raw_obs_fname:
-    - met_data_w_gaps.csv
+    -ccre-dam-data/ccre-met.csv
 
 downscaling_coeff: debiased.coefficients.2018_07_12_2019_07_11.RData
 
