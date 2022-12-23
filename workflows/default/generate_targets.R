@@ -22,7 +22,7 @@ configure_run_file <- "configure_run.yml"
 config <- FLAREr::set_configuration(configure_run_file,lake_directory, config_set_name = config_set_name)
 
 
-dir.create(file.path(lake_directory, "targets", config_obs$lake_name_code), showWarnings = FALSE)
+dir.create(file.path(lake_directory, "targets", config$location$site_id), showWarnings = FALSE)
 #' Clone or pull from data repositories
 
 FLAREr::get_git_repo(lake_directory,
@@ -50,8 +50,10 @@ cleaned_insitu_file <- in_situ_qaqc(insitu_obs_fname = file.path(lake_directory,
                                     ctd_fname = NA,
                                     nutrients_fname =  NA,
                                     secchi_fname = NA,
-                                    cleaned_insitu_file = file.path(lake_directory,"targets", config_obs$lake_name_code, paste0(config_obs$lake_name_code,"-targets-insitu.csv")),
-                                    site_id = config_obs$lake_name_code,
+                                    cleaned_insitu_file = file.path(lake_directory,"targets", 
+                                                                    config$location$site_id,
+                                                                    paste0(config$location$site_id,"-targets-insitu.csv")),
+                                    site_id = config$location$site_id,
                                     config = config_obs)
 
 #' Move targets to s3 bucket
