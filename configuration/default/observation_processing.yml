@@ -14,7 +14,7 @@ lake_longitude: -79.9580  #Degrees West
 
 local_tzone: "UTC"
 
-noaa_location: CCRE
+noaa_location: ccre
 
 met_raw_obs_fname:
     -ccre-dam-data/ccre-met.csv
