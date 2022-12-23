@@ -70,6 +70,7 @@
    white_ice_thickness = 0
    blue_ice_thickness = 0
    avg_surf_temp = 6
+   restart_variables = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 /
 &meteorology
    met_sw = .true.
