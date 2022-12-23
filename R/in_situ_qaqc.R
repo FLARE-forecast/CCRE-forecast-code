@@ -15,7 +15,7 @@ in_situ_qaqc <- function(insitu_obs_fname,
                           offset_file = insitu_obs_fname[3],
                           maintenance_file = maintenance_file,
                           config = config)
-# 
+ 
 #   if(exists("ctd_fname")){
 #     if(!is.na(ctd_fname)){
 #       print("QAQC CTD")
@@ -48,7 +48,7 @@ in_situ_qaqc <- function(insitu_obs_fname,
 #       d <- rbind(d,d_ch4)
 #     }
 #   }
-#   
+   
   cuts <- tibble::tibble(cuts = as.integer(factor(config$depths_bins_top)),
                          depth = config$depths_bins_top)
   
@@ -59,7 +59,7 @@ in_situ_qaqc <- function(insitu_obs_fname,
   
   d_clean <- d |>
     dplyr::mutate(method = paste(variable, method, sep = "_")) |>
-    dplyr::mutate(cuts = cut(depth, breaks = config$depths_bins_top, include.lowest = TRUE, right = FALSE, labels = FALSE)) |>
+    dplyr::mutate(cuts = cut(Position, breaks = config$depths_bins_top, include.lowest = TRUE, right = FALSE, labels = FALSE)) |> #Position was depth
     dplyr::mutate(time = lubridate::as_date(time) + lubridate::hours(hour(time))) |>
     dplyr::filter(lubridate::hour(time) == 0) |>
     dplyr::filter(method %in% methods) |>
@@ -87,7 +87,7 @@ in_situ_qaqc <- function(insitu_obs_fname,
   d_clean$site_id <- "ccre"
   
   d_clean <- d_clean %>%
-    rename(datetime = time,
+    dplyr::rename(datetime = time,
            observation = observed) |>
     select(datetime, site_id, depth, observation, variable)
   

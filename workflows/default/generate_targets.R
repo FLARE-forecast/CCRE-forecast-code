@@ -18,23 +18,27 @@ sapply(files.sources[grepl(".R$", files.sources)], source)
 #' Generate the `config_obs` object and create directories if necessary
 
 config_obs <- FLAREr::initialize_obs_processing(lake_directory, observation_yml = "observation_processing.yml", config_set_name = config_set_name)
+configure_run_file <- "configure_run.yml"
 config <- FLAREr::set_configuration(configure_run_file,lake_directory, config_set_name = config_set_name)
 
 
-dir.create(file.path(lake_directory, "targets", config_obs$site_id), showWarnings = FALSE)
+dir.create(file.path(lake_directory, "targets", config_obs$lake_name_code), showWarnings = FALSE)
 #' Clone or pull from data repositories
 
 FLAREr::get_git_repo(lake_directory,
-                     directory = config_obs$realtime_insitu_location,
-                     git_repo = "https://github.com/FLARE-forecast/CCRE-data.git")
+                     # directory = config_obs$insitu_obs_fname,
+                      directory = config_obs$realtime_temp_location,
+                     # directory = config_obs$realtime_insitu_location,
+                     git_repo = "https://github.com/FLARE-forecast/CCRE-data.git"
+                     )
 
 #' Download files from EDI
 
-FLAREr::get_edi_file(edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/57267535da5ab0687d2fee52083699f8",
+FLAREr::get_edi_file(edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/57267535da5ab0687d2fee52083699f8", #calwalk EDI
                      file = config_obs$insitu_obs_fname[2],
                      lake_directory)
 
-FLAREr::get_edi_file(edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/b391093432e38eee7c7cc34ae977d553",
+FLAREr::get_edi_file(edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/b391093432e38eee7c7cc34ae977d553", #depth offset EDI 
                      file = config_obs$insitu_obs_fname[3],
                      lake_directory)
 
@@ -46,19 +50,18 @@ cleaned_insitu_file <- in_situ_qaqc(insitu_obs_fname = file.path(lake_directory,
                                     ctd_fname = NA,
                                     nutrients_fname =  NA,
                                     secchi_fname = NA,
-                                    cleaned_insitu_file = file.path(lake_directory,"targets", config_obs$site_id, paste0(config_obs$site_id,"-targets-insitu.csv")),
-                                    site_id = config_obs$site_id,
+                                    cleaned_insitu_file = file.path(lake_directory,"targets", config_obs$lake_name_code, paste0(config_obs$lake_name_code,"-targets-insitu.csv")),
+                                    site_id = config_obs$lake_name_code,
                                     config = config_obs)
 
 #' Move targets to s3 bucket
 
 message("Successfully generated targets")
 
-FLAREr::put_targets(site_id = config_obs$site_id,
+FLAREr::put_targets(site_id = config_obs$lake_name_code,
                     cleaned_insitu_file,
                     cleaned_met_file = NA,
                     cleaned_inflow_file = NA,
-                    use_s3 = config$run_config$use_s3,
-                    config = config)
+                    use_s3 = config$run_config$use_s3)
 
 message("Successfully moved targets to s3 bucket")
