@@ -51,7 +51,7 @@
    timezone = -5
 /
 &output
-   out_dir = 'output'
+   out_dir = '.'
    out_fn = 'output'
    nsave = 24
 /
@@ -130,12 +130,12 @@
    benthic_mode = 2
    sed_heat_model = 1
    n_zones = 2
-   zone_heights = 18, 21 !3, 5, 7, 9.5 !These are measuring depth from bottom of reservoir, starting w/ 5 and 21 m from hobos 
+   zone_heights = 18, 24 !3, 5, 7, 9.5 !These are measuring depth from bottom of reservoir, starting w/ 5 and 21 m from hobos 
    sed_heat_Ksoil = 1.2, 1.2 !1.2, 1.2, 1.2, 1.2
    sed_temp_depth = 0.5, 0.5 ! 0.5, 0.5, 0.5, 0.5
   !sed_temp_mean = 11.39072901, 14.85279613, 14.85279613
-   sed_temp_mean = 15.25, 8.96!12, 12, 12, 20 ! 12.46962553, 15.75549561, 21.89313606   !get distribution for all temp data at 23m and 6m from 19 at thermistors ! took distribution from 5m and 21m from CCR hobos 
-   sed_temp_amplitude = 14, 4! 3, 3, 3, 5, !2.767260656, 3.993449873, 5.232029619 !1 sd on each side of mean from values above (ex if SD is 2 then this will be 4)
+   sed_temp_mean = 15.25, 8.96 !12, 12, 12, 20 ! 12.46962553, 15.75549561, 21.89313606   !get distribution for all temp data at 23m and 6m from 19 at thermistors ! took distribution from 5m and 21m from CCR hobos 
+   sed_temp_amplitude = 14, 4 ! 3, 3, 3, 5, !2.767260656, 3.993449873, 5.232029619 !1 sd on each side of mean from values above (ex if SD is 2 then this will be 4)
   ! sed_temp_amplitude = 3.993449873, 3.993449873, 5.232029619
    sed_temp_peak_doy = 214, 324! 278, 270, 266, 266  !277.6839306, 264.6064025, 266.8919938 !identify day of year of max temp for each 
   ! sed_temp_peak_doy = 277.6839306, 264.6064025, 266.8919938
