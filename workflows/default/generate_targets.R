@@ -64,6 +64,7 @@ FLAREr::put_targets(site_id = config_obs$lake_name_code,
                     cleaned_insitu_file,
                     cleaned_met_file = NA,
                     cleaned_inflow_file = NA,
-                    use_s3 = config$run_config$use_s3)
+                    use_s3 = config$run_config$use_s3,
+                    config = config)
 
 message("Successfully moved targets to s3 bucket")
