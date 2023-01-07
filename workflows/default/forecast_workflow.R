@@ -41,7 +41,7 @@ config <- FLAREr::set_configuration(configure_run_file,lake_directory, config_se
 
 if(noaa_ready){
   # Generate the targets
-  # source('workflow/generate_targets.R')
+  source('workflows/default/generate_targets.R')
   # Read in the targets
   cuts <- tibble::tibble(cuts = as.integer(factor(config$model_settings$modeled_depths)),
                          depth = config$model_settings$modeled_depths)
