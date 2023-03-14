@@ -4,42 +4,11 @@ library(lubridate)
 lake_directory <- here::here()
 setwd(lake_directory)
 
-
 configure_run_file <- "configure_run.yml"
 config_set_name <- "default"
 
-message("Checking for NOAA forecasts")
-noaa_ready <- FLAREr::check_noaa_present_arrow(lake_directory,
-                                               configure_run_file,
-                                               config_set_name = config_set_name)
-
-noaa_ready <- TRUE
-
-if(!noaa_ready){
-  config <- FLAREr::set_configuration(configure_run_file,lake_directory, config_set_name = config_set_name)
-  lapsed_time <- as.numeric(as.duration(Sys.time() - lubridate::as_datetime(config$run_config$forecast_start_datetime)))/(60*60)
-  if(lapsed_time > 24){
-    FLAREr::update_run_config2(lake_directory = lake_directory,
-                               configure_run_file = configure_run_file, 
-                               restart_file = basename(output$restart_file), 
-                               start_datetime = lubridate::as_datetime(config$run_config$start_datetime), 
-                               end_datetime = NA, 
-                               forecast_start_datetime = lubridate::as_datetime(config$run_config$forecast_start_datetime) + lubridate::days(1),  
-                               forecast_horizon = config$run_config$forecast_horizon,
-                               sim_name = config$run_config$sim_name, 
-                               site_id = config$location$site_id,
-                               configure_flare = config$run_config$configure_flare, 
-                               configure_obs = config$run_config$configure_obs, 
-                               use_s3 = config$run_config$use_s3,
-                               bucket = config$s3$warm_start$bucket,
-                               endpoint = config$s3$warm_start$endpoint,
-                               use_https = TRUE)  }
-}
-
 config <- FLAREr::set_configuration(configure_run_file,lake_directory, config_set_name = config_set_name)
 
-
-if(noaa_ready){
   # Generate the targets
   source('workflows/default/generate_targets.R')
   # Read in the targets
@@ -70,6 +39,13 @@ if(noaa_ready){
   if(config$run_config$use_s3){
     message("Successfully moved targets to s3 bucket")
   }
+
+
+  noaa_ready <- TRUE
+  while(noaa_ready){
+    
+    config <- FLAREr::set_configuration(configure_run_file,lake_directory, config_set_name = config_set_name)
+
   
   # Run FLARE
   output <- FLAREr::run_flare(lake_directory = lake_directory,
@@ -98,6 +74,10 @@ if(noaa_ready){
                      use_https = TRUE)
   
   RCurl::url.exists("https://hc-ping.com/551392ce-43f3-49b1-8a57-6a60bad1c377", timeout = 5)
+  
+  noaa_ready <- FLAREr::check_noaa_present_arrow(lake_directory,
+                                               configure_run_file,
+                                               config_set_name = config_set_name)
   
   
 }
