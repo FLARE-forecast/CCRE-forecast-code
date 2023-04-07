@@ -1,19 +1,24 @@
-temp_oxy_chla_qaqc <- function(realtime_file,
+wq_realtime_edi_combine <- function(realtime_file,
                                qaqc_file,
                                offset_file,
-                               config){
+                               config_file){
   
-  qaqc_exists <- TRUE
-  realtime_exists <- TRUE
+  #qaqc_exists <- TRUE
+  #realtime_exists <- TRUE
   
-  #if(!is.na(realtime_file)){
-  if(realtime_exists == TRUE){
-    d1 <- realtime_file
+  library(yaml)
+  config <- read_yaml(config_file)
+  
+  if(!is.na(realtime_file)){
+  #if(realtime_exists == TRUE){
     
-    #if(!is.na(qaqc_file)){
-    if(qaqc_exists==TRUE){
-      #d2 <- read.csv(qaqc_file, na.strings = 'NA', stringsAsFactors = FALSE)
-      d2 = qaqc_file
+    d1 <- read.csv(realtime_file, na.strings = 'NA', stringsAsFactors = FALSE)
+    #d1 <- realtime_file
+    
+    if(!is.na(qaqc_file)){
+    #if(qaqc_exists==TRUE){
+      d2 <- read.csv(qaqc_file, na.strings = 'NA', stringsAsFactors = FALSE)
+      #d2 = qaqc_file
       
       #subset d1 to only dates in d2
       #d1 <- d1_og[d1_og$DateTime %in% d2$DateTime,]
@@ -40,8 +45,8 @@ temp_oxy_chla_qaqc <- function(realtime_file,
                       depth_9 = d1$EXODepth_m_9,
                       Depth_m_13=d1$LvlDepth_m_13)
     
-    #if(!is.na(qaqc_file)){
-    if(qaqc_exists==TRUE){
+    if(!is.na(qaqc_file)){
+    #if(qaqc_exists==TRUE){
       
       TIMESTAMP_in <- as_datetime(d1$DateTime,tz = "EST")
       d1$TIMESTAMP <- with_tz(TIMESTAMP_in,tz = "UTC")
@@ -60,11 +65,11 @@ temp_oxy_chla_qaqc <- function(realtime_file,
                        wtr_13 = d2$ThermistorTemp_C_13, wtr_1_exo = d2$EXOTemp_C_1,
                        Chla_1 = d2$EXOChla_ugL_1, doobs_1 = d2$EXODO_mgL_1,
                        fDOM_1 = d2$EXOfDOM_QSU_1, bgapc_1 = d2$EXOBGAPC_ugL_1,
-                       depth_1 = d2$EXODepth_m_1,
+                       depth_1 = d2$EXO_depth_m_1,
                        wtr_9_exo = d2$EXOTemp_C_9,
                        doobs_9 = d2$EXODO_mgL_9,  #Chla_9 = d2$EXOChla_ugL_9,
                        fDOM_9 = d2$EXOfDOM_QSU_9, #bgapc_9 = d2$EXOBGAPC_ugL_9,
-                       depth_9 = d2$EXODepth_m_9,
+                       depth_9 = d2$EXO_depth_m_9,
                        Depth_m_13=d2$LvlDepth_m_13)
       
       d <- rbind(d3,d4)
@@ -228,8 +233,8 @@ temp_oxy_chla_qaqc <- function(realtime_file,
   
   ######################################################################################
   #now read in the offset file and calculate depth for each sensor/position
-  #offsets <- readr::read_csv(offset_file) %>% dplyr::select(-c(Reservoir,Site))
-  offsets <- offset_file %>% dplyr::select(-c(Reservoir,Site))
+  offsets <- readr::read_csv(offset_file) %>% dplyr::select(-c(Reservoir,Site))
+  #offsets <- offset_file %>% dplyr::select(-c(Reservoir,Site))
   
   #make depth numeric so it matches offset position col
   d$depth <- as.numeric(d$depth)
