@@ -35,7 +35,7 @@ realtime_met_station_location: data
 realtime_temp_location: ccre-dam-data
 
 insitu_obs_fname:
-    - ccre-dam-data/ccre-waterquality.csv
+    - ccre-dam-data/ccre-waterquality_L1.csv
     - CCR_Catwalk_EDI_2021.csv
     - CCR_Depth_offsets_2021.csv
 
