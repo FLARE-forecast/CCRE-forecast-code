@@ -10,10 +10,9 @@ in_situ_qaqc <- function(insitu_obs_fname,
 
   print("QAQC CCR sensors")
 
-  d <- temp_oxy_chla_qaqc(realtime_file = insitu_obs_fname[1],
+  d <- wq_realtime_edi_combine(realtime_file = insitu_obs_fname[1],
                           qaqc_file = insitu_obs_fname[2],
                           offset_file = insitu_obs_fname[3],
-                          maintenance_file = maintenance_file,
                           config = config)
  
 #   if(exists("ctd_fname")){

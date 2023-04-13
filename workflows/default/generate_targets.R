@@ -34,11 +34,13 @@ FLAREr::get_git_repo(lake_directory,
 
 #' Download files from EDI
 
-FLAREr::get_edi_file(edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/57267535da5ab0687d2fee52083699f8", #calwalk EDI
+FLAREr::get_edi_file(#edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/57267535da5ab0687d2fee52083699f8", #calwalk EDI ##update this url when data is published 
+                     edi_https = 'https://portal-s.edirepository.org/nis/dataviewer?packageid=edi.719.20&entityid=2ecdcd6114591d6a798ecce9050c13c7',
                      file = config_obs$insitu_obs_fname[2],
                      lake_directory)
 
-FLAREr::get_edi_file(edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/b391093432e38eee7c7cc34ae977d553", #depth offset EDI 
+FLAREr::get_edi_file(#edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/b391093432e38eee7c7cc34ae977d553", #depth offset EDI ##update this url when data is published 
+                     edi_https = 'https://portal-s.edirepository.org/nis/dataviewer?packageid=edi.719.20&entityid=da210012e686ffbde699fb6e49cb0c9c',
                      file = config_obs$insitu_obs_fname[3],
                      lake_directory)
 

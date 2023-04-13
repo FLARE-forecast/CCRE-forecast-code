@@ -1,13 +1,13 @@
 wq_realtime_edi_combine <- function(realtime_file,
                                qaqc_file,
                                offset_file,
-                               config_file){
+                               config){
   
   #qaqc_exists <- TRUE
   #realtime_exists <- TRUE
   
-  library(yaml)
-  config <- read_yaml(config_file)
+  # library(yaml)
+  # config <- read_yaml(config_file)
   
   if(!is.na(realtime_file)){
   #if(realtime_exists == TRUE){
@@ -65,11 +65,11 @@ wq_realtime_edi_combine <- function(realtime_file,
                        wtr_13 = d2$ThermistorTemp_C_13, wtr_1_exo = d2$EXOTemp_C_1,
                        Chla_1 = d2$EXOChla_ugL_1, doobs_1 = d2$EXODO_mgL_1,
                        fDOM_1 = d2$EXOfDOM_QSU_1, bgapc_1 = d2$EXOBGAPC_ugL_1,
-                       depth_1 = d2$EXO_depth_m_1,
+                       depth_1 = d2$EXODepth_m_1,
                        wtr_9_exo = d2$EXOTemp_C_9,
                        doobs_9 = d2$EXODO_mgL_9,  #Chla_9 = d2$EXOChla_ugL_9,
                        fDOM_9 = d2$EXOfDOM_QSU_9, #bgapc_9 = d2$EXOBGAPC_ugL_9,
-                       depth_9 = d2$EXO_depth_m_9,
+                       depth_9 = d2$EXODepth_m_9,
                        Depth_m_13=d2$LvlDepth_m_13)
       
       d <- rbind(d3,d4)
