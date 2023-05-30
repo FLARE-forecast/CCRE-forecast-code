@@ -17,7 +17,7 @@ local_tzone: "UTC"
 noaa_location: CCRE
 
 met_raw_obs_fname:
-    -ccre-dam-data/ccre-met.csv
+    -ccre-dam-data-qaqc/ccre_met_L1.csv
 
 downscaling_coeff: debiased.coefficients.2018_07_12_2019_07_11.RData
 
@@ -35,14 +35,14 @@ realtime_met_station_location: data
 realtime_temp_location: ccre-dam-data
 
 insitu_obs_fname:
-    - ccre-dam-data/ccre-waterquality_L1.csv
+    - ccre-dam-data-qaqc/ccre-waterquality_L1.csv
     - CCR_Catwalk_EDI_2021.csv
     - CCR_Depth_offsets_2021.csv
 
 variable_obsevation_depths: FALSE
 
 focal_depths: .na
-maintenance_file: ccre-dam-data/CCRW_maintenance_log.txt
+maintenance_file: ccre-dam-data-qaqc/CCRW_maintenance_log.txt
 
 pull_from_git: FALSE
 
