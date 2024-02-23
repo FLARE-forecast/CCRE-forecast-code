@@ -1,25 +1,25 @@
 s3:
   drivers:
-    endpoint: s3.flare-forecast.org
-    bucket: drivers/noaa/gefs-v12-reprocess
+    endpoint: renc.osn.xsede.org
+    bucket: bio230121-bucket01/flare/drivers/met/gefs-v12
   inflow_drivers:
-    endpoint: s3.flare-forecast.org
-    bucket: drivers/inflow/ccre/parquet
+    endpoint: renc.osn.xsede.org
+    bucket: bio230121-bucket01/flare/drivers/inflow/fcre/parquet
   targets:
-    endpoint: s3.flare-forecast.org
-    bucket: targets/ccre
+    endpoint: renc.osn.xsede.org
+    bucket: bio230121-bucket01/flare/targets/ccre
   forecasts:
-    endpoint: s3.flare-forecast.org
-    bucket: forecasts
+    endpoint: renc.osn.xsede.org
+    bucket: bio230121-bucket01/flare/forecasts
   forecasts_parquet:
-    endpoint: s3.flare-forecast.org
-    bucket: forecasts/parquet
+    endpoint: renc.osn.xsede.org
+    bucket: bio230121-bucket01/flare/forecasts/parquet
   warm_start:
-    endpoint: s3.flare-forecast.org
-    bucket: restart/ccre
+    endpoint: renc.osn.xsede.org
+    bucket: bio230121-bucket01/flare/restart/ccre
   scores:
-    endpoint: s3.flare-forecast.org
-    bucket: scores/parquet
+    endpoint: renc.osn.xsede.org
+    bucket: bio230121-bucket01/flare/scores/parquet
 location:
    site_id: ccre
    name: Carvins Cove Reservoir
