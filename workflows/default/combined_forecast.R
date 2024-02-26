@@ -3,7 +3,7 @@ library(lubridate)
 
 lake_directory <- here::here()
 setwd(lake_directory)
-forecast_site <- "bvre"
+forecast_site <- "ccre"
 configure_run_file <- "configure_run.yml"
 config_set_name <- "default"
 

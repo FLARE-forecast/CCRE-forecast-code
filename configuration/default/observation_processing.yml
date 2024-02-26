@@ -2,7 +2,7 @@
 # Lake information
 ###########################
 
-lake_name_code: ccre
+site_id: ccre
 lake_name: Carvins Cove Reservoir
 lake_latitude: 37.3697   #Degrees North
 lake_longitude: -79.9580  #Degrees West
