@@ -106,7 +106,7 @@ while(noaa_ready){
                   reference_date == lubridate::as_datetime(config$run_config$forecast_start_datetime)) |>
     dplyr::collect()
   
-  if(config$output_settings$evaluate_past & config$run_config$use_s3){
+ #if(config$run_config$use_s3){
     #past_days <- lubridate::as_date(forecast_df$reference_datetime[1]) - lubridate::days(config$run_config$forecast_horizon)
     past_days <- lubridate::as_date(lubridate::as_date(config$run_config$forecast_start_datetime) - lubridate::days(config$run_config$forecast_horizon))
     
@@ -119,9 +119,9 @@ while(noaa_ready){
                     reference_date == past_days) |>
       dplyr::collect()
     #unset_arrow_vars(vars)
-  }else{
-    past_forecasts <- NULL
-  }
+ # }else{
+ #   past_forecasts <- NULL
+ # }
   
   combined_forecasts <- dplyr::bind_rows(forecast_df, past_forecasts)
   
