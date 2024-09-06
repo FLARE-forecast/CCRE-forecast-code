@@ -136,7 +136,7 @@ while(noaa_ready){
                                            use_s3 = FALSE,
                                            bucket = NULL,
                                            endpoint = NULL,
-                                           local_directory = NA,
+                                           local_directory = file.path(lake_directory,'scores/ccre'),
                                            variable_types = c("state","parameter"))
   
   
