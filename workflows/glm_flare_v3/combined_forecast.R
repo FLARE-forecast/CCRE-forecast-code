@@ -136,7 +136,7 @@ while(noaa_ready){
                                            use_s3 = FALSE,
                                            bucket = NULL,
                                            endpoint = NULL,
-                                           local_directory = '/home/addelany/CCRE-forecast-code/scoring/ccre',
+                                           local_directory = NA,
                                            variable_types = c("state","parameter"))
   
   
