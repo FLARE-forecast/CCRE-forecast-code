@@ -130,7 +130,7 @@ while(noaa_ready){
   #combined_forecasts <- arrow::open_dataset('./forecasts/parquet/site_id=ccre/model_id=glm_flare_v3/reference_date=2024-09-03/part-0.parquet') |> collect()
   
   
-  
+  message('running scoring function')
   scoring <- generate_forecast_score_arrow(targets_df = targets_df,
                                            forecast_df = combined_forecasts, ## only works if dataframe returned from output
                                            use_s3 = FALSE,
