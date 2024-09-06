@@ -1,0 +1,59 @@
+##########################
+# Lake information
+###########################
+
+site_id: ccre
+lake_name: Carvins Cove Reservoir
+lake_latitude: 37.3697   #Degrees North
+lake_longitude: -79.9580  #Degrees West
+
+#Time zone that GLM is run in
+#Currently needed to be GMT so that it interfaces with the NOAA forecast
+#reference_tzone <<- "GMT"
+#Local time zone of the lake
+
+local_tzone: "UTC"
+
+noaa_location: CCRE
+
+met_raw_obs_fname:
+    -ccre-dam-data-qaqc/ccre_met_L1.csv
+
+downscaling_coeff: debiased.coefficients.2018_07_12_2019_07_11.RData
+
+#########################
+### Depth information
+#########################
+#Depths used in the EnKF
+#This are the depths that are saved between days
+#Init depth of lake
+lake_depth_init: 22.8  #not a modeled state
+
+depths_bins_top: [0.1,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,15.0,19.0]
+
+realtime_met_station_location: data
+realtime_temp_location: ccre-dam-data-qaqc
+
+insitu_obs_fname:
+    - ccre-dam-data-qaqc/ccre-waterquality_L1.csv
+    - CCR_Catwalk_EDI_2021.csv
+    - CCR_Depth_offsets_2021.csv
+
+variable_obsevation_depths: FALSE
+
+focal_depths: .na
+maintenance_file: ccre-dam-data-qaqc/CCRW_maintenance_log.txt
+
+pull_from_git: FALSE
+
+target_variables:
+    - temperature
+
+averaging_period:
+    - "1 hour"
+
+averaging_period_starting_hour: "00:00:00"
+
+measurement_methods:
+  temperature:
+    - thermistor

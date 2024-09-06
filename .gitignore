@@ -8,6 +8,8 @@ automation/*.log
 restart/*
 targets/*
 scores/*
+scoring/*
+plots/*
 
 
 # History files
