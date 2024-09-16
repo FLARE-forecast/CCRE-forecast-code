@@ -91,7 +91,7 @@ flows:
    use_ler_vars: FALSE
    historical_inflow_model: NA
    future_inflow_model: NA
-   historic_outflow_model: NA
+   historical_outflow_model: NA
    future_outflow_model: NA
    local_inflow_directory: NA
    local_outflow_directory: NA
