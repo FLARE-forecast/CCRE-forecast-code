@@ -133,10 +133,10 @@ while(noaa_ready){
   message('running scoring function')
   scoring <- generate_forecast_score_arrow(targets_df = targets_df,
                                            forecast_df = combined_forecasts, ## only works if dataframe returned from output
-                                           use_s3 = FALSE,
-                                           bucket = NULL,
-                                           endpoint = NULL,
-                                           local_directory = file.path(lake_directory,'scores/ccre'),
+                                           use_s3 = TRUE,
+                                           bucket = config$s3$scores$bucket,
+                                           endpoint = config$s3$scores$endpoint,
+                                           local_directory = './FCRE-forecast-code/scores/fcre',
                                            variable_types = c("state","parameter"))
   
   
