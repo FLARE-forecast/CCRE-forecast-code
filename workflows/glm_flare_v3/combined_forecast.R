@@ -144,7 +144,9 @@ while(noaa_ready){
   forecast_start_datetime <- lubridate::as_datetime(config$run_config$forecast_start_datetime) + lubridate::days(1)
   start_datetime <- lubridate::as_datetime(config$run_config$forecast_start_datetime) - lubridate::days(1)
   restart_file <- paste0(config$location$site_id,"-", (lubridate::as_date(forecast_start_datetime)- days(1)), "-",config$run_config$sim_name ,".nc")
-  
+
+
+  message('updating run configuration')
   FLAREr:::update_run_config(lake_directory = lake_directory,
                              configure_run_file = configure_run_file, 
                              restart_file = restart_file, 
@@ -157,8 +159,8 @@ while(noaa_ready){
                              configure_flare = config$run_config$configure_flare, 
                              configure_obs = config$run_config$configure_obs, 
                              use_s3 = config$run_config$use_s3,
-                             bucket = config$s3$warm_start$bucket,
-                             endpoint = config$s3$warm_start$endpoint,
+                             bucket = config$s3$restart$bucket,
+                             endpoint = config$s3$restart$endpoint,
                              use_https = TRUE)
   
   RCurl::url.exists("https://hc-ping.com/551392ce-43f3-49b1-8a57-6a60bad1c377", timeout = 5)
