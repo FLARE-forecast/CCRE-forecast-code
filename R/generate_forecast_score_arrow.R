@@ -20,6 +20,8 @@ generate_forecast_score_arrow <- function(targets_df,
       stop("scoring function needs bucket and endpoint if use_s3=TRUE")
     }
     vars <- arrow_env_vars()
+    message(bucket)
+    message(endpoint)
     output_directory <- arrow::s3_bucket(bucket = bucket,
                                          endpoint_override =  endpoint)
     on.exit(unset_arrow_vars(vars))
