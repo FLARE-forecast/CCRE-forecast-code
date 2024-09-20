@@ -51,8 +51,7 @@ generate_forecast_score_arrow <- function(targets_df,
 arrow_env_vars <- function(){
   user_region <- Sys.getenv("AWS_DEFAULT_REGION")
   user_meta <- Sys.getenv("AWS_EC2_METADATA_DISABLED")
-  #Sys.unsetenv("AWS_DEFAULT_REGION")
-  Sys.setenv(AWS_DEFAULT_REGION="")
+  Sys.unsetenv("AWS_DEFAULT_REGION")
   Sys.setenv(AWS_EC2_METADATA_DISABLED="TRUE")
 
   list(user_region=user_region, user_meta = user_meta)
