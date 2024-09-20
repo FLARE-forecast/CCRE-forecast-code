@@ -23,6 +23,7 @@ generate_forecast_score_arrow <- function(targets_df,
     message(bucket)
     message(endpoint)
     message(Sys.getenv("AWS_DEFAULT_REGION"))
+    options(cloudyr.aws.allow_empty_region = TRUE)
     output_directory <- arrow::s3_bucket(bucket = bucket,
                                          endpoint_override =  endpoint,
                                         region = "")
