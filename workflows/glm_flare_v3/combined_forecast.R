@@ -143,7 +143,7 @@ while(noaa_ready){
   
   forecast_start_datetime <- lubridate::as_datetime(config$run_config$forecast_start_datetime) + lubridate::days(1)
   start_datetime <- lubridate::as_datetime(config$run_config$forecast_start_datetime) - lubridate::days(1)
-  restart_file <- paste0(config$location$site_id,"-", (lubridate::as_date(forecast_start_datetime)- days(1)), "-",config$run_config$sim_name ,".nc")
+  restart_file <- paste0(config$location$site_id,"-", (lubridate::as_date(forecast_start_datetime) - lubridate::days(1)), "-",config$run_config$sim_name ,".nc")
 
 
   message('updating run configuration')
