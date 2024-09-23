@@ -136,7 +136,7 @@ while(noaa_ready){
                                            use_s3 = TRUE,
                                            bucket = config$s3$scores$bucket,
                                            endpoint = config$s3$scores$endpoint,
-                                           local_directory = './FCRE-forecast-code/scores/fcre',
+                                           local_directory = './CCRE-forecast-code/scores/ccre',
                                            variable_types = c("state","parameter"))
   
   
