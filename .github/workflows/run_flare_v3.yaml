@@ -4,7 +4,7 @@ on:
   #- cron: "0 12 * * *"
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted #ubuntu-latest
     container:
       image: rqthomas/flare-rocker:4.4
     steps:
