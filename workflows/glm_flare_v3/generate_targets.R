@@ -43,7 +43,7 @@ cleaned_insitu_file <- in_situ_qaqc(insitu_obs_fname = file.path(lake_directory,
 
 message("Successfully generated targets")
 
-FLAREr::put_targets(site_id = config_obs$site_id,
+FLAREr:::put_targets(site_id = config_obs$site_id,
                     cleaned_insitu_file,
                     cleaned_met_file = NA,
                     cleaned_inflow_file = NA,
