@@ -36,8 +36,8 @@ realtime_temp_location: ccre-dam-data-qaqc
 
 insitu_obs_fname:
     - ccre-dam-data-qaqc/ccre-waterquality_L1.csv
-    - CCR_Catwalk_EDI_2021.csv
-    - CCR_Depth_offsets_2021.csv
+    - CCR_Catwalk_EDI_2024.csv
+    - CCR_Depth_offsets_2024.csv
 
 variable_obsevation_depths: FALSE
 

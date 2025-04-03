@@ -36,6 +36,7 @@ da_setup:
     assimilate_first_step: FALSE
     use_obs_constraint: TRUE
     obs_filename: ccre-targets-insitu.csv
+    localization_distance: .na #distance in meters were covariances in the model error are used
 model_settings:
    ncore: 4
    model_name: glm
@@ -84,29 +85,22 @@ default_init:
 flows:
    include_inflow: FALSE
    include_outflow: FALSE
-   use_forecasted_inflow: FALSE
-   forecast_inflow_model: NA
-   observed_inflow_filename: NA
-   inflow_variables: NA
-   use_ler_vars: FALSE
-   historical_inflow_model: NA
-   future_inflow_model: NA
-   historical_outflow_model: NA
-   future_outflow_model: NA
-   local_inflow_directory: NA
-   local_outflow_directory: NA
-   use_flows_s3: NA
+   historical_inflow_model: historical/model_id=historical_interp_inflow/site_id={site_id}
+   future_inflow_model: future/model_id=inflow-aed/reference_date={reference_date}/site_id={site_id}
+   historical_outflow_model: historical/model_id=historical_interp_outflow/site_id={site_id}
+   future_outflow_model: future/model_id=outflow-aed/reference_date={reference_date}/site_id={site_id}
+   local_inflow_directory: drivers/inflow
+   local_outflow_directory: drivers/inflow
+   use_flows_s3: no
+   use_ler_vars: no
 met:
-   future_met_model: 'gefs-v12/stage2'
-   historical_met_model: 'gefs-v12/stage3'
+   future_met_model: 'gefs-v12/stage2/reference_datetime={reference_date}/site_id={site_id}'
+   historical_met_model: 'gefs-v12/stage3/site_id={site_id}'
    historical_met_use_s3: TRUE
    future_met_use_s3: TRUE
    use_openmeteo: FALSE
    local_met_directory: 'drivers'
    use_forecasted_met: TRUE
-   #   use_observed_met: FALSE
-   #   local_directory: .na
-   #   observed_met_filename: .na
    use_ler_vars: FALSE
    forecast_lag_days: 1
 uncertainty:
