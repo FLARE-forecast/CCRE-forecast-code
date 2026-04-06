@@ -21,7 +21,7 @@ get_edi_file(#edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1
 
 get_edi_file(#edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/b391093432e38eee7c7cc34ae977d553", #depth offset EDI ##update this url when data is published 
                      #edi_https = 'https://portal-s.edirepository.org/nis/dataviewer?packageid=edi.719.20&entityid=da210012e686ffbde699fb6e49cb0c9c',
-                     edi_https = 'https://pasta.lternet.edu/package/data/eml/edi/1069/3/be32110f0fcd4a1704d351fead0224d4',
+                     edi_https = 'https://pasta.lternet.edu/package/data/eml/edi/1069/4/23caf92df7e665597ebc329d9e406637',
                      file = config_obs$insitu_obs_fname[3],
                      lake_directory)
 
