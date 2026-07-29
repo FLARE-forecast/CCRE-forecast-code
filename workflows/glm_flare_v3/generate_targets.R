@@ -1,6 +1,8 @@
 library(tidyverse)
 library(lubridate)
 
+edi_access_key = Sys.getenv('EDI_ACCESS_KEY')
+
 dir.create(file.path(lake_directory, "targets", config$location$site_id), showWarnings = FALSE)
 #' Clone or pull from data repositories
 
@@ -15,13 +17,13 @@ FLAREr:::get_git_repo(lake_directory,
 
 get_edi_file(#edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/57267535da5ab0687d2fee52083699f8", #calwalk EDI ##update this url when data is published 
                      #edi_https = 'https://portal-s.edirepository.org/nis/dataviewer?packageid=edi.719.20&entityid=2ecdcd6114591d6a798ecce9050c13c7',
-  edi_https = 'https://pasta.lternet.edu/package/data/eml/edi/1069/4/42e6d8bb3d379d40a4a4fb566d4ff36e',
+  edi_https = paste0('https://pasta.lternet.edu/package/data/eml/edi/1069/4/42e6d8bb3d379d40a4a4fb566d4ff36e?key=',edi_access_key),
   file = config_obs$insitu_obs_fname[2],
                      lake_directory)
 
 get_edi_file(#edi_https = "https://pasta.lternet.edu/package/data/eml/edi/1069/1/b391093432e38eee7c7cc34ae977d553", #depth offset EDI ##update this url when data is published 
                      #edi_https = 'https://portal-s.edirepository.org/nis/dataviewer?packageid=edi.719.20&entityid=da210012e686ffbde699fb6e49cb0c9c',
-                     edi_https = 'https://pasta.lternet.edu/package/data/eml/edi/1069/4/23caf92df7e665597ebc329d9e406637',
+                     edi_https = paste0('https://pasta.lternet.edu/package/data/eml/edi/1069/4/23caf92df7e665597ebc329d9e406637?key=',edi_access_key),
                      file = config_obs$insitu_obs_fname[3],
                      lake_directory)
 
